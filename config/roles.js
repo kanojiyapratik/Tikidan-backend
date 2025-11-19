@@ -4,31 +4,31 @@ const roles = {
   'deputy_manager': {
     displayName: 'Deputy Manager',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'clients', 'team', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
     level: 'management'
   },
   'assistant_manager': {
     displayName: 'Assistant Manager',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'clients', 'team', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
     level: 'management'
   },
   'manager': {
     displayName: 'Manager',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'clients', 'team', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
     level: 'management'
   },
   'senior_manager': {
     displayName: 'Senior Manager',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'clients', 'team', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
     level: 'senior_management'
   },
   'sales_manager': {
     displayName: 'Sales Manager',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'clients', 'team', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
     level: 'management'
   },
   'president': {
@@ -40,20 +40,14 @@ const roles = {
   'marketing_coordinator': {
     displayName: 'Marketing Coordinator',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'expenses_view', 'expenses_create', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'clients', 'team', 'expenses_view', 'expenses_create', 'profile', 'my_leaves'],
     level: 'executive'
   },
   'agm': {
     displayName: 'AGM',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'clients', 'team', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
     level: 'senior_management'
-  },
-  'executive': {
-    displayName: 'Executive',
-    department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'expenses_view', 'expenses_create', 'profile', 'my_leaves'],
-    level: 'executive'
   },
   'accounts_executive': {
     displayName: 'Accounts Executive',
@@ -64,37 +58,37 @@ const roles = {
   'zonal_manager': {
     displayName: 'Zonal Manager',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'clients', 'team', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
     level: 'management'
   },
   'technical_head': {
     displayName: 'Technical Head',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'meetings', 'expenses_view', 'expenses_create', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'clients', 'team', 'meetings', 'expenses_view', 'expenses_create', 'profile', 'my_leaves'],
     level: 'management'
   },
   'tester': {
     displayName: 'Tester',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'expenses_view', 'expenses_create', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'team', 'expenses_view', 'expenses_create', 'profile', 'my_leaves'],
     level: 'staff'
   },
   'territory_manager': {
     displayName: 'Territory Manager',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'expenses_view', 'expenses_create', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'clients', 'team', 'expenses_view', 'expenses_create', 'profile', 'my_leaves'],
     level: 'management'
   },
   'sr_general_manager': {
     displayName: 'Sr. General Manager',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'clients', 'team', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
     level: 'senior_management'
   },
   'business_head': {
     displayName: 'Business Head',
     department: '',
-    menuAccess: ['dashboard', 'projects', 'clients', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'projects', 'clients', 'team', 'meetings', 'expenses_view', 'expenses_create', 'expenses_review', 'expenses_reports', 'profile', 'my_leaves'],
     level: 'executive'
   },
 
@@ -108,7 +102,7 @@ const roles = {
   'user': {
     displayName: 'User',
     department: '',
-    menuAccess: ['dashboard', 'expenses_view', 'expenses_create', 'profile', 'my_leaves'],
+    menuAccess: ['dashboard', 'team', 'expenses_view', 'expenses_create', 'profile', 'my_leaves'],
     level: 'basic'
   }
 };

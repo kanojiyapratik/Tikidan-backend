@@ -94,6 +94,7 @@ router.post('/register-employee', async (req, res) => {
       mobile,
       department,
       reporting,
+      reportsTo,
       addressLine1,
       addressLine2,
       city,
@@ -147,6 +148,7 @@ router.post('/register-employee', async (req, res) => {
       mobile,
       department: department || '', // No default department
       reporting,
+      reportsTo: reportsTo || null,
       addressLine1,
       addressLine2,
       city,
@@ -366,6 +368,7 @@ router.put('/employees/:id', verifyToken, requireRole(['admin']), async (req, re
       mobile,
       department,
       reporting,
+      reportsTo,
       addressLine1,
       addressLine2,
       city,
@@ -413,6 +416,7 @@ router.put('/employees/:id', verifyToken, requireRole(['admin']), async (req, re
     if (mobile) user.mobile = mobile;
     if (department !== undefined) user.department = department;
     if (reporting) user.reporting = reporting;
+    if (reportsTo !== undefined) user.reportsTo = reportsTo;
     if (addressLine1) user.addressLine1 = addressLine1;
     if (addressLine2 !== undefined) user.addressLine2 = addressLine2;
     if (city) user.city = city;
@@ -506,6 +510,78 @@ router.get('/user-permissions', verifyToken, async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Server error while fetching permissions',
+      error: error.message
+    });
+  }
+});
+
+// @route   GET /api/auth/employees-list
+// @desc    Get all employees for dropdown selection
+// @access  Private - Admin only
+router.get('/employees-list', verifyToken, requireRole(['admin']), async (req, res) => {
+  try {
+    // Fetch all employees with essential fields for dropdown
+    const employees = await User.find({})
+      .select('_id name firstName lastName email designation role employeeId')
+      .sort({ name: 1 });
+    
+    // Format the response for dropdown
+    const formattedEmployees = employees.map(employee => ({
+      id: employee._id,
+      name: employee.name || `${employee.firstName || ''} ${employee.lastName || ''}`.trim() || employee.email,
+      email: employee.email,
+      designation: employee.designation || '',
+      role: employee.role,
+      employeeId: employee.employeeId || ''
+    }));
+    
+    res.json({
+      success: true,
+      count: formattedEmployees.length,
+      employees: formattedEmployees
+    });
+  } catch (error) {
+    console.error('Get employees list error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error while fetching employees list',
+      error: error.message
+    });
+  }
+});
+
+// @route   GET /api/auth/team-members
+// @desc    Get team members (employees who report to current user)
+// @access  Private
+router.get('/team-members', verifyToken, async (req, res) => {
+  try {
+    const currentUserId = req.user.id;
+    
+    // Find all employees who report to the current user
+    const teamMembers = await User.find({ reportsTo: currentUserId })
+      .select('_id name firstName lastName email designation role employeeId')
+      .sort({ name: 1 });
+    
+    // Format the response
+    const formattedTeamMembers = teamMembers.map(employee => ({
+      id: employee._id,
+      name: employee.name || `${employee.firstName || ''} ${employee.lastName || ''}`.trim() || employee.email,
+      email: employee.email,
+      designation: employee.designation || '',
+      role: employee.role,
+      employeeId: employee.employeeId || ''
+    }));
+    
+    res.json({
+      success: true,
+      count: formattedTeamMembers.length,
+      teamMembers: formattedTeamMembers
+    });
+  } catch (error) {
+    console.error('Get team members error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error while fetching team members',
       error: error.message
     });
   }
